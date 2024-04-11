@@ -5,7 +5,7 @@ import dayjs from 'dayjs'
 import { google } from 'googleapis'
 import { getGoogleOAuthToken } from '@/src/lib/google'
 
-export default async function handle(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
@@ -75,6 +75,7 @@ export default async function handle(
   await calendar.events.insert({
     calendarId: 'primary',
     conferenceDataVersion: 1,
+    sendUpdates: 'all',
     requestBody: {
       summary: `Ignite Call: ${name}`,
       description: observations,
